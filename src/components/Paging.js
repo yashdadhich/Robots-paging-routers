@@ -29,32 +29,33 @@ const Paging = () => {
         alldetails();
     }, []);
 
-    const alldetails =()=> {
-            fetch('https://jsonplaceholder.typicode.com/users')
-              .then(response=> response.json())
-              .then(users => {setAlldetails(users)});
-            // console.log(count)
+    const alldetails = () => {
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(users => { setAlldetails(users) });
+        // console.log(count)
     }
 
-    
+
     const onSearchChange = (event) => {
         setSearchfield(event.target.value)
-        
-        if(searchfield==="") {
+
+        if (searchfield === "") {
             setIssearch(true)
         }
 
-        else{
-            setIssearch(false);}
+        else {
+            setIssearch(false);
+        }
 
-         setIssearch(true)
-         
+        setIssearch(true)
+
     }
-    
+
     const filteredRobots = robots?.filter(robot => {
         return robot.name.toLowerCase().includes(searchfield.toLowerCase());
     })
-     
+
     const filtereDetails = allDetails?.filter(robot => {
         return robot.name.toLowerCase().includes(searchfield.toLowerCase());
     })
@@ -85,8 +86,8 @@ const Paging = () => {
                 <div className='tc'>
                     <h1 className='f1'>RoboFriends</h1>
                     <Searchbox searchChange={onSearchChange} />
-                  { !issearch &&<CardList robots={filteredRobots} />}
-                  { issearch&&<CardList robots={filtereDetails} />} 
+                    {!issearch && <CardList robots={filteredRobots} />}
+                    {issearch && <CardList robots={filtereDetails} />}
                 </div>
 
                 <div>
